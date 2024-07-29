@@ -1,32 +1,33 @@
+/* General Styles */
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Roboto', sans-serif;
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    color: #ffffff;
+    background-color: #000000;
+    overflow-x: hidden; /* Prevent horizontal scroll */
 }
-html {
-    scroll-behavior: smooth;
-  }
-  
 
 header {
-    background-color: rgba(0, 0, 0, 0.7);
+    background: rgba(0, 0, 0, 0); /* Transparent background */
     padding: 1em 0;
     position: fixed;
     width: 100%;
     top: 0;
     z-index: 1000;
+    display: flex;
+    justify-content: center; /* Center the nav */
 }
 
 nav ul {
     list-style: none;
-    text-align: center;
     padding: 0;
     margin: 0;
+    display: flex;
 }
 
 nav ul li {
-    display: inline;
     margin: 0 15px;
 }
 
@@ -34,62 +35,106 @@ nav ul li a {
     color: #fff;
     text-decoration: none;
     font-size: 1.2em;
-}
-
-section {
-    padding: 80px 20px;
-    background-size: cover;
-    background-position: center;
-    color: #fff;
-}
-
-#hero {
-    text-align: center;
-    padding: 100px 20px;
-    background-image: url('../img/hero-bg.png');
-}
-
-#hero h1 {
-    margin: 0;
-    font-size: 3em;
-}
-
-#hero p {
-    font-size: 1.5em;
-}
-
-.brief-introduction {
-    font-size: 1.2em;
-    margin-top: 10px;
-}
-
-.slider {
     position: relative;
-    max-width: 100%;
-    margin: 20px auto;
-    overflow: hidden;
-    border-radius: 10px;
+    padding: 5px 0;
 }
 
-.slides {
-    display: flex;
-    transition: transform 0.5s ease-in-out;
+nav ul li a:hover {
+    color: #ffcc00;
+    transition: color 0.3s ease;
 }
 
-.slide {
-    min-width: 100%;
-    box-sizing: border-box;
-}
-
-.slide img {
+nav ul li a::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
     width: 100%;
-    display: block;
-    border-radius: 10px;
+    height: 2px;
+    background: #ffcc00;
+    transform: scaleX(0);
+    transform-origin: bottom right;
+    transition: transform 0.3s ease;
 }
 
+nav ul li a:hover::before {
+    transform: scaleX(1);
+    transform-origin: bottom left;
+}
+
+/* Section Background Animation */
+.common-background {
+    background: linear-gradient(to right, #000000, #333333);
+    animation: backgroundAnimation 10s infinite alternate;
+    padding: 80px 20px;
+    color: #ffffff;
+}
+
+@keyframes backgroundAnimation {
+    0% {
+        background: linear-gradient(to right, #000000, #333333);
+    }
+    100% {
+        background: linear-gradient(to right, #333333, #000000);
+    }
+}
+
+/* Hero Section Styles */
+#hero {
+    padding: 50px 20px;
+    position: relative;
+    overflow: hidden;
+}
+
+.hero-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* Space out the profile picture and description */
+    gap: 20px;
+}
+
+/* Hero Section Styles */
+.hero-description h1 {
+    margin: 0;
+    font-size: 4em;
+    font-family: 'Open Sans', sans-serif;
+    text-align: left;
+    transition: color 0.3s ease, text-shadow 0.3s ease;
+}
+
+.hero-description h1:hover {
+    color: #ffcc00; /* Change text color on hover */
+    text-shadow: 0 4px 8px rgba(255, 255, 0, 0.5); /* Add shadow effect */
+}
+
+
+.profile-picture {
+    width: 300px; /* Larger profile picture */
+    height: 300px;
+    border-radius: 50%;
+    overflow: hidden;
+    border-bottom: 6px solid #ddbd31;
+   
+    transform: translateX(-50px); /* Move profile picture to the left */
+    transition: transform 0.5s ease, border-color 0.5s ease;
+}
+
+.profile-picture img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.profile-picture:hover {
+    transform: scale(1.1) translateX(-50px); /* Enhanced transition effect */
+    border-color: #ffcc00;
+}
+
+/* Projects Section Styles */
 #projects {
     padding: 50px 20px;
-    background-image: url('../img/projects-bg.jpg');
+    color: #ffffff;
 }
 
 #projects h2 {
@@ -104,41 +149,50 @@ section {
     gap: 20px;
 }
 
-.card {
-    background-color: rgba(255, 255, 255, 0.8);
+.project-cards .card {
+    background-color: rgba(237, 228, 57, 0.742); /* Slightly transparent white background */
     border-radius: 10px;
     overflow: hidden;
     width: 300px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 8px rgba(237, 228, 57, 0.742);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.card img {
+.project-cards .card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.project-cards .card img {
     width: 100%;
     height: auto;
 }
 
-.card-content {
+.project-cards .card-content {
     padding: 20px;
+    color: #ffffff;
+    transition: background-color 0.3s ease;
 }
 
-.card-content h3 {
+.project-cards .card:hover .card-content {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+.project-cards .card-content h3 {
     font-size: 1.5em;
-    margin: 0 0 10px;
-}
-
-.card-content p {
-    font-size: 1em;
     margin: 0;
 }
 
+/* About Section Styles */
 #about {
     padding: 50px 20px;
-    background-image: url('../img/about-bg.jpg');
 }
 
 #about h2 {
     font-size: 2.5em;
     margin-bottom: 20px;
+    text-align: center;
+    
 }
 
 .about-content {
@@ -152,7 +206,6 @@ section {
     max-width: 800px;
     margin: 0 auto;
     font-size: 1.2em;
-    color: #fff;
 }
 
 .about-image {
@@ -165,24 +218,24 @@ section {
     border-radius: 10px;
 }
 
+/* Footer Section Styles */
 footer {
-    background-image: url('../img/footer-bg.jpg');
-    background-size: cover;
-    background-position: center;
-    color: #fff;
+    background-color: #000000; /* Black background */
+    color: #ffffff; /* White text color */
     text-align: center;
-    padding: 20px 0;
+    padding: 50px 20px; /* Increased padding for better spacing */
     position: relative;
 }
 
 .footer-content {
     max-width: 800px;
     margin: 0 auto;
+    text-align: center;
 }
 
 .footer-content h2 {
-    font-size: 2em;
-    margin-bottom: 10px;
+    font-size: 2.5em;
+    margin-bottom: 20px;
 }
 
 .footer-content p {
@@ -193,9 +246,27 @@ footer {
 .social-links a {
     display: inline-block;
     margin: 0 10px;
+    font-size: 1.5em;
+    color: #ffffff;
+    text-decoration: none;
+    transition: color 0.3s ease, transform 0.3s ease;
 }
 
-.social-links img {
-    width: 40px;
-    height: 40px;
+.social-links a:hover {
+    color: #ffcc00;
+    transform: scale(1.2);
+}
+
+/* Animation for Contact Me Section */
+footer {
+    animation: footerAnimation 10s infinite alternate;
+}
+
+@keyframes footerAnimation {
+    0% {
+        background-color: #000000;
+    }
+    100% {
+        background-color: #333333;
+    }
 }
